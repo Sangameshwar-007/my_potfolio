@@ -1,0 +1,267 @@
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    min-height: calc(100vh - 160px);
+    padding-bottom: 4rem;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.welcome-text {
+    color: var(--primary);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.highlight {
+    color: var(--primary);
+    text-shadow: 0 0 30px var(--primary-glow);
+}
+
+.hero-description {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 400px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 10px 20px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px var(--primary-glow);
+}
+
+.btn-outline {
+    border: 1px solid var(--text-muted);
+    color: var(--text-white);
+}
+
+.btn-outline:hover {
+    border-color: var(--text-white);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.scroll-down {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 4rem;
+}
+
+.mouse {
+    width: 24px;
+    height: 36px;
+    border: 2px solid var(--text-muted);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+}
+
+.wheel {
+    width: 3px;
+    height: 6px;
+    background: var(--text-white);
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+}
+
+.scroll-down span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Visual Side */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-frame {
+    position: relative;
+    width: 380px;
+    height: 500px;
+    border: 15px solid rgba(15, 23, 42, 0.8);
+    border-radius: 200px;
+    /* Arch shape */
+    overflow: visible;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 185px;
+    z-index: 1;
+}
+
+.image-frame::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 1px solid var(--glass-border);
+    border-radius: 220px;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    z-index: 2;
+}
+
+.pyramid {
+    top: -20px;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    opacity: 0.8;
+    box-shadow: 0 0 30px var(--primary);
+    transform: rotate(-15deg);
+}
+
+.spiral {
+    bottom: 20px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border: 4px solid #00f2ff;
+    border-radius: 50%;
+    border-bottom-color: transparent;
+    transform: rotate(45deg);
+    box-shadow: 0 0 20px #00f2ff;
+}
+
+.floating-badge {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px var(--primary-glow);
+    z-index: 3;
+}
+
+.badge-icon {
+    font-size: 1.5rem;
+    color: white;
+}
+
+@media (max-width: 992px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+        min-height: auto;
+        padding-top: 2rem;
+    }
+
+    .hero-content {
+        align-items: center;
+        padding: 0 1rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-description {
+        max-width: 100%;
+        font-size: 1rem;
+    }
+
+    .scroll-down {
+        display: none;
+    }
+
+    .image-frame {
+        width: 280px;
+        height: 380px;
+        border-width: 10px;
+    }
+
+    .profile-img {
+        border-radius: 135px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .image-frame {
+        width: 240px;
+        height: 320px;
+    }
+}
