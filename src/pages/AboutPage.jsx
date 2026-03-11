@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import SocialLinks from "../components/SocialLinks";
-import API, { IS_LOCAL } from "../services/api";
+import API from "../services/api";
 import "./AboutPage.css";
-
 
 function AboutPage() {
     const [abouts, setAbouts] = useState([]);
@@ -47,51 +46,44 @@ function AboutPage() {
                         <div className="about-display">
                             <p className="description">{abouts[0].description}</p>
                             <p className="email"><span>Email:</span> {abouts[0].email}</p>
-                            {IS_LOCAL && (
-                                <button
-                                    className="btn btn-outline"
-                                    onClick={() => setIsEditing(true)}
-                                >
-                                    Edit Bio
-                                </button>
-                            )}
+                            <button
+                                className="btn btn-outline"
+                                onClick={() => setIsEditing(true)}
+                            >
+                                Edit Bio
+                            </button>
                         </div>
                     ) : (
-                        IS_LOCAL ? (
-                            <form onSubmit={handleSubmit} className="about-form">
-                                <h3>{editId ? "Update Bio" : "Add Bio"}</h3>
-                                <textarea
-                                    placeholder="Write your bio here..."
-                                    value={form.description}
-                                    onChange={e => setForm({ ...form, description: e.target.value })}
-                                    required
-                                />
-                                <input
-                                    type="email"
-                                    placeholder="Your email"
-                                    value={form.email}
-                                    onChange={e => setForm({ ...form, email: e.target.value })}
-                                    required
-                                />
-                                <div className="form-btns">
-                                    <button type="submit" className="btn btn-primary">Save Changes</button>
-                                    {editId && (
-                                        <button
-                                            type="button"
-                                            className="btn btn-outline"
-                                            onClick={() => setIsEditing(false)}
-                                        >
-                                            Cancel
-                                        </button>
-                                    )}
-                                </div>
-                            </form>
-                        ) : (
-                            <p className="no-access">Admin access restricted to local environment.</p>
-                        )
+                        <form onSubmit={handleSubmit} className="about-form">
+                            <h3>{editId ? "Update Bio" : "Add Bio"}</h3>
+                            <textarea
+                                placeholder="Write your bio here..."
+                                value={form.description}
+                                onChange={e => setForm({ ...form, description: e.target.value })}
+                                required
+                            />
+                            <input
+                                type="email"
+                                placeholder="Your email"
+                                value={form.email}
+                                onChange={e => setForm({ ...form, email: e.target.value })}
+                                required
+                            />
+                            <div className="form-btns">
+                                <button type="submit" className="btn btn-primary">Save Changes</button>
+                                {editId && (
+                                    <button
+                                        type="button"
+                                        className="btn btn-outline"
+                                        onClick={() => setIsEditing(false)}
+                                    >
+                                        Cancel
+                                    </button>
+                                )}
+                            </div>
+                        </form>
                     )}
                 </section>
-
             </div>
         </section>
     );

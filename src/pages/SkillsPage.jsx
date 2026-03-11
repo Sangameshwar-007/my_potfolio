@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import API, { IS_LOCAL } from "../services/api";
+import API from "../services/api";
 import { FaTools } from "react-icons/fa";
 import "./SkillsPage.css";
-
 
 function SkillsPage() {
     const [skills, setSkills] = useState([]);
@@ -36,31 +35,29 @@ function SkillsPage() {
                     <p>My core skills and their mastery levels.</p>
                 </header>
 
-                {IS_LOCAL && (
-                    <section className="skill-form glass">
-                        <h3>Add New Skill</h3>
-                        <form onSubmit={handleSubmit}>
+                <section className="skill-form glass">
+                    <h3>Add New Skill</h3>
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Skill Name (e.g. React)"
+                            value={form.skill_name}
+                            onChange={e => setForm({ ...form, skill_name: e.target.value })}
+                            required
+                        />
+                        <div className="range-group">
+                            <label>Mastery Level: <span>{form.percentage}%</span></label>
                             <input
-                                type="text"
-                                placeholder="Skill Name (e.g. React)"
-                                value={form.skill_name}
-                                onChange={e => setForm({ ...form, skill_name: e.target.value })}
-                                required
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={form.percentage}
+                                onChange={e => setForm({ ...form, percentage: parseInt(e.target.value) })}
                             />
-                            <div className="range-group">
-                                <label>Mastery Level: <span>{form.percentage}%</span></label>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="100"
-                                    value={form.percentage}
-                                    onChange={e => setForm({ ...form, percentage: parseInt(e.target.value) })}
-                                />
-                            </div>
-                            <button type="submit" className="btn btn-primary">Add Skill</button>
-                        </form>
-                    </section>
-                )}
+                        </div>
+                        <button type="submit" className="btn btn-primary">Add Skill</button>
+                    </form>
+                </section>
 
                 <section className="skills-list">
                     {skills.map(skill => (
@@ -75,18 +72,15 @@ function SkillsPage() {
                                     style={{ width: `${skill.percentage}%` }}
                                 ></div>
                             </div>
-                            {IS_LOCAL && (
-                                <button
-                                    onClick={() => deleteSkill(skill.id)}
-                                    className="delete-small"
-                                >
-                                    &times;
-                                </button>
-                            )}
+                            <button
+                                onClick={() => deleteSkill(skill.id)}
+                                className="delete-small"
+                            >
+                                &times;
+                            </button>
                         </div>
                     ))}
                 </section>
-
             </div>
         </section>
     );

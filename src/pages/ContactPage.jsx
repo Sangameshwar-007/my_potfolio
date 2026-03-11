@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import API, { IS_LOCAL } from "../services/api";
+import API from "../services/api";
 import "./ContactPage.css";
-
 
 function ContactPage() {
     const [messages, setMessages] = useState([]);
@@ -74,28 +73,25 @@ function ContactPage() {
                         </form>
                     </section>
 
-                    {IS_LOCAL && (
-                        <section className="messages-section glass">
-                            <h3>Recent Messages</h3>
-                            <div className="messages-list">
-                                {messages.length > 0 ? messages.map(msg => (
-                                    <div key={msg.id} className="message-card">
-                                        <div className="msg-header">
-                                            <h4>{msg.name}</h4>
-                                            <span>{msg.email}</span>
-                                        </div>
-                                        <p className="msg-subject">{msg.subject}</p>
-                                        <p className="msg-body">{msg.message}</p>
-                                        <button onClick={() => deleteMessage(msg.id)} className="delete-small">&times;</button>
+                    <section className="messages-section glass">
+                        <h3>Recent Messages</h3>
+                        <div className="messages-list">
+                            {messages.length > 0 ? messages.map(msg => (
+                                <div key={msg.id} className="message-card">
+                                    <div className="msg-header">
+                                        <h4>{msg.name}</h4>
+                                        <span>{msg.email}</span>
                                     </div>
-                                )) : (
-                                    <p className="no-msgs">No messages yet.</p>
-                                )}
-                            </div>
-                        </section>
-                    )}
+                                    <p className="msg-subject">{msg.subject}</p>
+                                    <p className="msg-body">{msg.message}</p>
+                                    <button onClick={() => deleteMessage(msg.id)} className="delete-small">&times;</button>
+                                </div>
+                            )) : (
+                                <p className="no-msgs">No messages yet.</p>
+                            )}
+                        </div>
+                    </section>
                 </div>
-
             </div>
         </section>
     );
