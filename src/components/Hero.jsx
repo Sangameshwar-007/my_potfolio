@@ -9,15 +9,15 @@ function Hero() {
                     Hello, my <br /> name's <span className="highlight">Sangamesawar.</span>
                 </h1>
                 <p className="hero-description">
-                    I'm a Full Stack Developer <br />
-                    Currently working with GrappleSoft <br />
+                    I'm a python  Full Stack Developer <br />
+                    Currently working with Sirius Soft Sol <br />
 
                 </p>
 
                 <div className="hero-btns">
                     <a
-                        href="/SANGAMESHWAR_KAMA.docx"
-                        download="SANGAMESHWAR_KAMA_CV.docx"
+                        href="/SANGAMESHWAR_KAMA .pdf"
+                        download="SANGAMESHWAR_KAMA .pdf"
                         className="btn btn-primary"
                     >
                         Download cv
